@@ -36,7 +36,7 @@ final class SignPresenter extends Presenter
     {
         try {
             $this->getUser()->login($data->name, $data->pwd);
-            $this->redirect('Home:');
+            $this->redirect('Admin:');
 
         } catch (AuthenticationException $e) {
             $form->addError('Nesprávné přihlašovací jméno nebo heslo.');

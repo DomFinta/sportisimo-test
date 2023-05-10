@@ -1,0 +1,181 @@
+$hover-color: #4571c4;
+$primary-blue: #3561be;
+$sidebar-width: 55px;
+$secondary-blue: #4486de;
+$white: #fff;
+$gray: #eeeeee;
+$darker-gray: #c9c8c8;
+$darkest-gray: #767676;
+
+
+.sidenav {
+  width: $sidebar-width;
+  background-color: $primary-blue;
+
+  li {
+    a {
+      padding: 0 15px;
+      margin: 10px 0;
+
+      &.active {
+        background-color: $hover-color;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:hover {
+        background-color: $hover-color;
+      }
+
+      i {
+        &.material-icons {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+#admin {
+  margin-left: $sidebar-width;
+  width: calc(100% - $sidebar-width);
+  background-color: $gray;
+  height: 100vh;
+
+  #title {
+    height: auto;
+    background-color: $primary-blue;
+
+    &.row {
+      margin-bottom: 0;
+
+      h1 {
+        font-size: 32px;
+        margin: 10px 0;
+        color: $white;
+      }
+
+      .s2 {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        a {
+          color: $white;
+          font-weight: 400;
+
+          strong {
+            font-weight: 800;
+          }
+
+          &:hover {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+  #sub-title {
+    height: auto;
+    background-color: $secondary-blue;
+
+    &.row {
+      margin-bottom: 0;
+      h2 {
+        font-size: 24px;
+        margin: 10px 0;
+        color: $white;
+
+      }
+    }
+  }
+
+  #admin-body {
+    &.row {
+      margin: 15px;
+      background-color: $white;
+      padding: 10px;
+
+    }
+
+    a {
+      line-height: 27px;
+
+    }
+
+    .row {
+      .col {
+        padding: 0;
+      }
+    }
+
+    table {
+      border: 1px solid $darker-gray;
+      thead {
+        tr {
+          background-color: $gray;
+          color: $darkest-gray;
+        }
+      }
+
+      .name {
+        width: 80%;
+
+        a {
+          i {
+            color: $darkest-gray;
+            transform: translateY(23%);
+            width: 18px;
+            padding: 0;
+            margin: 0;
+          }
+
+          &.active {
+            i {
+              color: $secondary-blue;
+            }
+          }
+        }
+      }
+
+      .action {
+        width: 20%;
+        text-align: right;
+
+        a {
+          color: $darker-gray;
+
+          &:hover {
+            color: $primary-blue;
+            &:first-child {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      text-align: right;
+
+      a {
+        color: black;
+        margin: 0 10px;
+        width: 8px;
+
+
+        &.active {
+          border-bottom: 1px solid $secondary-blue;
+        }
+
+        i {
+          color: $secondary-blue;
+          transform: translateY(23%);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{varType array $brands}
+{varType string $userName}
+{varType Nette\Utils\Paginator $paginator}
+{varType string $nameOrder}
+
+{var int $page = $paginator->getPage()}
+{var int $pageCount = $paginator->getPageCount()}
+
+{block content}
+
+
+	<ul id="slide-out" class="sidenav" style="transform: translateX(0%);">
+		<li><a href="#!"><i class="material-icons">menu</i></a></li>
+		<li><a href="#!"><i class="material-icons">dashboard</i></a></li>
+		<li><a href="#!"><i class="material-icons">people</i></a></li>
+		<li><a href="#!"><i class="material-icons">new_releases</i></a></li>
+		<li><a href="#!" class="active"><i class="material-icons">sell</i></a></li>
+	</ul>
+
+	<div id="admin">
+		<div id="title" class="row">
+			<div class="col s10">
+				<h1>SRP</h1>
+			</div>
+			<div class="col s2">
+				<a n:href="Sign:signOut"><strong>Odhlásit</strong> ({$userName})</a>
+			</div>
+		</div>
+
+		<div id="sub-title" class="row">
+			<div class="col s12">
+				<h2><i class="material-icons">arrow_back</i> Značky</h2>
+			</div>
+		</div>
+
+		<div id="admin-body" class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="col s4">
+						<a class="btn waves-effect waves-light">
+							<i class="material-icons">add</i>
+							PŘIDAT ZNAČKU
+						</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<table class="brand-list">
+							<thead>
+								<tr>
+									<th class="name">
+										Název
+										<a n:href="default, $page, nameOrder:'ASC'"
+											n:class="$nameOrder === 'ASC' ? 'active' : ''"
+										>
+											<i class="material-icons">arrow_upward</i>
+										</a>
+										<a n:href="default, $page, nameOrder:'DESC'"
+											n:class="$nameOrder === 'DESC' ? 'active' : ''"
+										>
+											<i class="material-icons">arrow_downward</i>
+										</a>
+									</th>
+									<th class="action">Akce</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr n:foreach="$brands as $brand">
+									<td class="name">{$brand->name}</td>
+									<td class="action">
+										<a href="#">Smazat</a>
+										<a href="#">Editovat</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="pagination">
+							{if !$paginator->isFirst()}
+								<a n:href="default, $page - 1, $nameOrder"><i class="material-icons">keyboard_arrow_left</i></a>
+							{/if}
+
+							{if $page - 3 > 1}
+								<a n:href="default, 1, $nameOrder">1</a> ...
+							{/if}
+
+							<a n:for="$i = -2; $i <= 2; $i++"
+								n:href="default, $page + $i, $nameOrder"
+								n:class="$i === 0 ? 'active' : ''"
+								n:if="$page + $i <= $pageCount && $page + $i >= 1"
+							>
+									{$page + $i}
+							</a>
+
+							{if $page + 3 < $pageCount}
+								... <a n:href="default, $pageCount, $nameOrder">{$pageCount}</a>
+							{/if}
+
+							{if !$paginator->isLast()}
+								<a n:href="default, $page + 1, $nameOrder"><i class="material-icons">keyboard_arrow_right</i></a>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}

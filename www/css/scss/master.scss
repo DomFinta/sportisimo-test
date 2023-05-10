@@ -1,9 +1,10 @@
 $primary-blue: #3561be;
-$secondary-blue: #3163a2;
+$secondary-blue: #4486de;
 $gray: #eeeeee;
 $white: #fff;
 
 @import 'signIn.scss';
+@import 'admin.scss';
 
 .btn {
   background-color: $secondary-blue;
@@ -23,4 +24,8 @@ $white: #fff;
       background-color: $primary-blue;
     }
   }
+}
+
+.material-icons {
+  transform: translateY(13%);
 }
