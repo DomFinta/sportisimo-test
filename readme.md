@@ -16,3 +16,7 @@ database:
 	user: 'root'
 	password: 'root'
 ```
+
+Login
+-----
+To login into application uset userName: "admin" password: "admin"
