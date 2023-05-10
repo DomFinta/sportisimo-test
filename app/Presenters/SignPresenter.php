@@ -1,23 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Presenters;
 
+use App\Model\Authenticator;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
 
 final class SignPresenter extends Presenter
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     protected function createComponentSignInForm(): Form
     {
         $form = new Form;
-        $form->addText('username', 'Jméno:')
+        $form->addText('name', 'Jméno:')
             ->setRequired('Prosím vyplňte jméno.');
 
-        $form->addPassword('password', 'Heslo:')
+        $form->addPassword('pwd', 'Heslo:')
             ->setRequired('Prosím vyplňte heslo.');
 
-        $form->addSubmit('send', 'Přihlásit');
+        $form->addSubmit('send', 'Přihlásit')
+            ->setHtmlAttribute('class', ['waves-effect', 'waves-light', 'btn']);
 
         $form->onSuccess[] = [$this, 'signIn'];
         return $form;
@@ -26,7 +35,7 @@ final class SignPresenter extends Presenter
     public function signIn(Form $form, \stdClass $data): void
     {
         try {
-            $this->getUser()->login($data->username, $data->password);
+            $this->getUser()->login($data->name, $data->pwd);
             $this->redirect('Home:');
 
         } catch (AuthenticationException $e) {
@@ -40,8 +49,7 @@ final class SignPresenter extends Presenter
 
         if ($user->isLoggedIn()) {
             $user->logout();
-            $this->flashMessage('Odhlášení bylo úspěšné.');
-            $this->redirect('Home:');
+            $this->redirect('Sign:');
         }
     }
 }

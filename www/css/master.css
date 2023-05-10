@@ -1,6 +1,21 @@
-body h1 {
-  color: red;
-  width: 100%;
+.sign-in .row {
+  margin-top: 60px;
+}
+
+.btn {
+  background-color: #3163a2;
+  color: #fff;
+}
+.btn input {
+  background-color: #3163a2;
+  color: #fff;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #3561be;
+}
+.btn:hover input {
+  background-color: #3561be;
 }
 
 /*# sourceMappingURL=master.css.map */

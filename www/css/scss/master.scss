@@ -1,11 +1,26 @@
-$primary-blue: #3561be00;
-$secondary-blue: #3163a200;
-$gray: #eeeeee00;
-$white: #fff0;
+$primary-blue: #3561be;
+$secondary-blue: #3163a2;
+$gray: #eeeeee;
+$white: #fff;
 
-body {
-  h1 {
-    color: red;
-    width: 100%;
+@import 'signIn.scss';
+
+.btn {
+  background-color: $secondary-blue;
+  color: $white;
+
+
+  input {
+    background-color: $secondary-blue;
+    color: $white;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: $primary-blue;
+
+    input {
+      background-color: $primary-blue;
+    }
   }
 }

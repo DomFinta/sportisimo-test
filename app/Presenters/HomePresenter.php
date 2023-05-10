@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use Nette;
+use Nette\Database\Explorer;
 
 
 final class HomePresenter extends Nette\Application\UI\Presenter
 {
-    public function __construct() {
+    public function __construct(
+        private Explorer $database,
+    ) {
         parent::__construct();
     }
 
@@ -18,7 +21,7 @@ final class HomePresenter extends Nette\Application\UI\Presenter
         parent::startup();
 
         if (!$this->getUser()->isLoggedIn()) {
-            $this->redirect('Sign:in');
+            $this->redirect('Sign:');
         }
     }
 
