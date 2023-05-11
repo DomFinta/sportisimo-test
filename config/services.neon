@@ -1,4 +1,5 @@
 services:
 	- App\Router\RouterFactory::createRouter
 	- App\Model\Authenticator
-	- App\Model\Brand
+	- App\Model\Facade\BrandFacade
+	- App\Model\Facade\UserFacade

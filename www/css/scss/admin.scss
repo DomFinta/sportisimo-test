@@ -89,6 +89,13 @@ $darkest-gray: #767676;
         margin: 10px 0;
         color: $white;
 
+        a {
+          color: $white;
+
+          &:hover {
+            color: $primary-blue;
+          }
+        }
       }
     }
   }
@@ -112,7 +119,7 @@ $darkest-gray: #767676;
       }
     }
 
-    table {
+    .brand-list {
       border: 1px solid $darker-gray;
       thead {
         tr {

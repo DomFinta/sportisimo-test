@@ -29,3 +29,20 @@ $white: #fff;
 .material-icons {
   transform: translateY(13%);
 }
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: relative;
+  opacity: 1;
+}
+
+.flash {
+  &.success {
+    background-color: green;
+    color: $white;
+  }
+
+  &.error {
+    background-color: red;
+    color: $white;
+  }
+}

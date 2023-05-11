@@ -1,0 +1,35 @@
+{block content}
+
+    <div id="admin-body" class="row">
+        {form brandForm, class => "col s12 l4"}
+
+            <div class="row">
+                <div class="input-field col s10">
+                    {input name}
+                    {label name /}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s10">
+                    {input seoId}
+                    {label seoId /}
+                </div>
+            </div>
+
+            <p>
+                {input isActive}
+            </p>
+
+            <div class="row">
+                <div class="input-field col s10">
+                    {input timeCreated}
+                    {label timeCreated /}
+                </div>
+            </div>
+
+            {input send, class => 'btn'}
+        {/form}
+        <div class="col s0 l8"></div>
+    </div>
+{/block}

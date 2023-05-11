@@ -1,3 +1,5 @@
+{varType string $userName}
+
 <!DOCTYPE html>
 <html lang="cs">
 	<head>
@@ -17,6 +19,31 @@
 	</head>
 
 	<body>
-		{include content}
+		<ul id="slide-out" class="sidenav" style="transform: translateX(0%);">
+			<li><a href="#!"><i class="material-icons">menu</i></a></li>
+			<li><a href="#!"><i class="material-icons">dashboard</i></a></li>
+			<li><a href="#!"><i class="material-icons">people</i></a></li>
+			<li><a href="#!"><i class="material-icons">new_releases</i></a></li>
+			<li><a href="#!" class="active"><i class="material-icons">sell</i></a></li>
+		</ul>
+
+		<div id="admin">
+			<div id="title" class="row">
+				<div class="col s10">
+					<h1>SRP</h1>
+				</div>
+				<div n:if="isset($userName)" class="col s2">
+					<a n:href="Sign:signOut"><strong>Odhlásit</strong> ({$userName})</a>
+				</div>
+			</div>
+
+			{include content}
+
+			<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">
+				{$flash->message}
+			</div>
+
+		</div>
+
 	</body>
 </html>

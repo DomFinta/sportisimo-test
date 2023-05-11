@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use App\Model\Authenticator;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
@@ -36,7 +35,7 @@ final class SignPresenter extends Presenter
     {
         try {
             $this->getUser()->login($data->name, $data->pwd);
-            $this->redirect('Admin:');
+            $this->redirect('Brand:');
 
         } catch (AuthenticationException $e) {
             $form->addError('Nesprávné přihlašovací jméno nebo heslo.');

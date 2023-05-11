@@ -65,6 +65,12 @@
   margin: 10px 0;
   color: #fff;
 }
+#admin #sub-title.row h2 a {
+  color: #fff;
+}
+#admin #sub-title.row h2 a:hover {
+  color: #3561be;
+}
 #admin #admin-body.row {
   margin: 15px;
   background-color: #fff;
@@ -76,37 +82,37 @@
 #admin #admin-body .row .col {
   padding: 0;
 }
-#admin #admin-body table {
+#admin #admin-body .brand-list {
   border: 1px solid #c9c8c8;
 }
-#admin #admin-body table thead tr {
+#admin #admin-body .brand-list thead tr {
   background-color: #eeeeee;
   color: #767676;
 }
-#admin #admin-body table .name {
+#admin #admin-body .brand-list .name {
   width: 80%;
 }
-#admin #admin-body table .name a i {
+#admin #admin-body .brand-list .name a i {
   color: #767676;
   transform: translateY(23%);
   width: 18px;
   padding: 0;
   margin: 0;
 }
-#admin #admin-body table .name a.active i {
+#admin #admin-body .brand-list .name a.active i {
   color: #4486de;
 }
-#admin #admin-body table .action {
+#admin #admin-body .brand-list .action {
   width: 20%;
   text-align: right;
 }
-#admin #admin-body table .action a {
+#admin #admin-body .brand-list .action a {
   color: #c9c8c8;
 }
-#admin #admin-body table .action a:hover {
+#admin #admin-body .brand-list .action a:hover {
   color: #3561be;
 }
-#admin #admin-body table .action a:hover:first-child {
+#admin #admin-body .brand-list .action a:hover:first-child {
   color: red;
 }
 #admin #admin-body .pagination {
