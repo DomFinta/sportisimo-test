@@ -12,7 +12,7 @@ Start by running `php -S localhost:8000 -t www`
 
 DB
 --
-I userd adminer to manage DB.
+I used adminer to manage DB.
 Access it at `localhost:8000/adminer.php`
 
 Login to DB
