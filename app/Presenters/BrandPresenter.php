@@ -12,7 +12,6 @@ use Nette\Utils\Paginator;
 
 final class BrandPresenter extends Nette\Application\UI\Presenter
 {
-    private const BRAND_PAGE_LIMIT = 4;
     public function __construct(
         private BrandFacade $brandFacade
     ) {
@@ -30,14 +29,19 @@ final class BrandPresenter extends Nette\Application\UI\Presenter
         $this->template->userName = $this->getUser()->identity->getData()['username'];
     }
 
-    public function renderDefault(int $page = 1, string $nameOrder = 'ASC'): void
+    public function renderDefault(
+        int $page = 1,
+        string $nameOrder = BrandFacade::ASC,
+        int $pageSize = BrandFacade::ALLOWED_PAGE_SIZES[0]
+    ): void
     {
         $brandCount = $this->brandFacade->getBrandCount();
-        $paginator = $this->createPaginator($brandCount, self::BRAND_PAGE_LIMIT, $page);
+        $paginator = $this->createPaginator($brandCount, $pageSize, $page);
 
         $this->template->brands = $this->brandFacade->getBrands($paginator->getLength(), $paginator->getOffset(), $nameOrder);
         $this->template->paginator = $paginator;
         $this->template->nameOrder = $nameOrder;
+        $this->template->pageSize = $pageSize;
     }
 
     private function createPaginator(int $count, int $limit, int $page): Paginator
@@ -95,10 +99,10 @@ final class BrandPresenter extends Nette\Application\UI\Presenter
             ->setDefaults($brand->toArray());
     }
 
-    public function actionDelete(int $id, int $pageId, $nameOrder): void
+    public function actionDelete(int $id, int $pageId, string $nameOrder, int $pageSize): void
     {
         $this->brandFacade->deleteBrand($id);
         $this->flashMessage("Značka smazána", 'success');
-        $this->redirect('Brand:', ['page' => $pageId, 'nameOrder' => $nameOrder]);
+        $this->redirect('Brand:', ['page' => $pageId, 'nameOrder' => $nameOrder, 'pageSize' => $pageSize]);
     }
 }

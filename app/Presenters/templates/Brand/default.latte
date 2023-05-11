@@ -1,6 +1,7 @@
 {varType array $brands}
 {varType Nette\Utils\Paginator $paginator}
 {varType string $nameOrder}
+{varType int $pageSize}
 
 {var int $page = $paginator->getPage()}
 {var int $pageCount = $paginator->getPageCount()}
@@ -31,13 +32,13 @@
 						<tr>
 							<th class="name">
 								Název
-								<a n:href="default, $page, nameOrder:'ASC'"
-									n:class="$nameOrder === 'ASC' ? 'active' : ''"
+								<a n:href="default, $page, nameOrder:App\Model\Facade\BrandFacade::ASC"
+									n:class="$nameOrder === App\Model\Facade\BrandFacade::ASC ? 'active' : ''"
 								>
 									<i class="material-icons">arrow_upward</i>
 								</a>
-								<a n:href="default, $page, nameOrder:'DESC'"
-									n:class="$nameOrder === 'DESC' ? 'active' : ''"
+								<a n:href="default, $page, nameOrder:App\Model\Facade\BrandFacade::DESC"
+									n:class="$nameOrder === App\Model\Facade\BrandFacade::DESC ? 'active' : ''"
 								>
 									<i class="material-icons">arrow_downward</i>
 								</a>
@@ -50,7 +51,7 @@
 
 							<td class="name">{$brand->name}</td>
 							<td class="action">
-								<a n:href="Brand:delete, $brand->brandId, $page, $nameOrder"
+								<a n:href="Brand:delete, $brand->brandId, $page, $nameOrder, $pageSize"
 									onclick="return confirm('Opravdu chcete smazat značku ' + {$brand->name} + '?');"
 								>
 									Smazat
@@ -63,15 +64,15 @@
 
 				<div class="pagination">
 					{if !$paginator->isFirst()}
-						<a n:href="default, $page - 1, $nameOrder"><i class="material-icons">keyboard_arrow_left</i></a>
+						<a n:href="default, $page - 1, $nameOrder, $pageSize"><i class="material-icons">keyboard_arrow_left</i></a>
 					{/if}
 
 					{if $page - 3 >= 1}
-						<a n:href="default, 1, $nameOrder">1</a> ...
+						<a n:href="default, 1, $nameOrder, $pageSize">1</a> ...
 					{/if}
 
 					<a n:for="$i = -2; $i <= 2; $i++"
-						n:href="default, $page + $i, $nameOrder"
+						n:href="default, $page + $i, $nameOrder, $pageSize"
 						n:class="$i === 0 ? 'active' : ''"
 						n:if="$page + $i <= $pageCount && $page + $i >= 1"
 					>
@@ -79,12 +80,21 @@
 					</a>
 
 					{if $page + 3 <= $pageCount}
-						... <a n:href="default, $pageCount, $nameOrder">{$pageCount}</a>
+						... <a n:href="default, $pageCount, $nameOrder, $pageSize">{$pageCount}</a>
 					{/if}
 
 					{if !$paginator->isLast()}
-						<a n:href="default, $page + 1, $nameOrder"><i class="material-icons">keyboard_arrow_right</i></a>
+						<a n:href="default, $page + 1, $nameOrder, $pageSize"><i class="material-icons">keyboard_arrow_right</i></a>
 					{/if}
+
+					<div class="page-size">
+						<a n:foreach="App\Model\Facade\BrandFacade::ALLOWED_PAGE_SIZES as $allowedPageSize"
+							n:href="default, $page, $nameOrder, pageSize:$allowedPageSize"
+							n:class="$pageSize === $allowedPageSize ? 'active' : ''"
+						>
+							{$allowedPageSize}
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

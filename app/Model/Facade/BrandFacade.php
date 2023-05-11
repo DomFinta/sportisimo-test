@@ -11,6 +11,12 @@ use Nette\Database\Table\Selection;
 class BrandFacade
 {
     private const TABLE_NAME = "Brand";
+
+    public const ASC = "ASC";
+    public const DESC ="DESC";
+
+    public const ALLOWED_PAGE_SIZES = [4, 8, 12];
+
     public function __construct(
         private Explorer $database,
     ) {
@@ -43,7 +49,7 @@ class BrandFacade
     private function getUniqueSeoId(string $name): string
     {
         $count = 1;
-        $seoIdOriginal = urlencode($name);
+        $seoIdOriginal = $this->seoFriendly($name);
         $seoId = $seoIdOriginal;
         while ($this->database->table(self::TABLE_NAME)->where(['seoId' => $seoId])->fetch()) {
             $seoId = $seoIdOriginal . '-' . $count;
@@ -51,6 +57,12 @@ class BrandFacade
         }
 
         return $seoId;
+    }
+
+    private function seoFriendly(string $name): string
+    {
+        // spaces to dashes and transform to lowercase
+        return preg_replace('/\s+/', '-', strtolower($name));
     }
 
     public function getById(int $brandId): ?ActiveRow
