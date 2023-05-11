@@ -14,6 +14,7 @@ DB
 --
 I used adminer to manage DB.
 Access it at `localhost:8000/adminer.php`
+With user: root password: root
 
 Login to DB
 -----
