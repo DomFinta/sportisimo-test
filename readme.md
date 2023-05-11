@@ -1,22 +1,19 @@
 Administration to add / delete / edit brands
 =================
 
+First
+-----
+
+Run `npm install` to instal dependencies
+
+
 Start by running `php -S localhost:8000 -t www` 
 
 DB
 --
+I userd adminer to manage DB.
+Access it at `localhost:8000/adminer.php`
 
-Replace 'local.neon' with:
-``` 
-parameters:
-
-
-database:
-	dsn: 'mysql:host=127.0.0.1;dbname=sportisimo'
-	user: 'root'
-	password: 'root'
-```
-
-Login
+Login to DB
 -----
 To login into application uset userName: "admin" password: "admin"
