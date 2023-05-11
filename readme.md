@@ -4,8 +4,9 @@ Administration to add / delete / edit brands
 First
 -----
 
-Run `npm install` to instal dependencies
+Clone repository
 
+Run `npm install` to instal dependencies
 
 Start by running `php -S localhost:8000 -t www` 
 
